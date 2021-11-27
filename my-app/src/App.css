@@ -1,38 +1,96 @@
-.App {
-  text-align: center;
+
+body {
+    background-color: #181818;
+    color: antiquewhite;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card{
+    border-radius: 5px; 
+    border: 2px solid white;
+    margin: 10px;
+    max-width: 350px;
+    height: 320px;
+    text-align: center;
+    border-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+img { 
+    margin-bottom: 40px;
+    max-width: 126px;
+    margin-left: 9px;
+    border-radius: 5px;
+    position: absolute;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.img-objednavka {
+    position: relative;
+    height: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+.objedvka-item{
+    border-radius: 5px; 
+    border: 2px solid white;
+    text-align: left;
+    border-radius: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buttonkosik{
+    
+margin-top: 204px;
+}
+
+ul { 
+	margin: 0; 
+	padding: 5px; 
+	list-style-type: none; 
+	text-align: center; 
+    padding: 10px;
+    border-radius: 5px; 
+    
+} 
+
+ul li {  
+    display: inline; 
+    padding: 10px;
+} 
+
+ul li a { 
+	text-decoration: none; 
+	padding: .2em 1em; 
+	color: #fff; 
+	background-color: #000;
+    border-radius: 5px; 
+    border: 2px solid white;
+    
+} 
+
+button {
+    background-color: #181818;
+    color: #fff; 
+    border: 2px solid #4CAF50;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+ .form-input {
+    width: 300px;
+    background-color: gray;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+   
+}
+
+.admin{
+    border-radius: 10px; 
+    border: 2px solid white;
+    padding-left: 20px;
+    
 }
