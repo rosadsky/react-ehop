@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const mysql = require('mysql')
 var cors = require('cors');
+var shortid = require('shortid');
 
 app.use(express.json());
 app.use(cors());
@@ -24,6 +25,11 @@ function connectDB() {
     }
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  }
 
 
 app.get('/createproducts', function(req, res,next) {
@@ -57,6 +63,48 @@ app.get('/createproducts', function(req, res,next) {
 })
 
 app.post('/vlozitobjednavku',(req,res,next)=> {
+    connectDB();
+
+    let customer_id = getRandomInt(1000,2000);
+    let email = req.body.email;
+    let meno = req.body.meno;
+    let ulica = req.body.ulica;
+    let cislo_domu= req.body.cislo_domu;
+    let mesto = req.body.mesto;
+    let psc = req.body.psc;
+    let objednavka_id = getRandomInt(2001,3000);
+    let stav = "nezaplatene";
+    let produkty_objednavka = req.body.produkty_objednavka;
+
+    var sql = "INSERT INTO Zakaznik (ID,email, meno, ulica, cislo,mesto,psc) VALUES (?,?,?,?,?,?,?)";
+    connection.query(sql,[customer_id,email,meno,ulica,cislo_domu,mesto,psc], function (err, result) {
+      if (err) throw err;
+      console.log(" vlozeny zakaznik");
+    });
+
+    sql_objednavka = "INSERT INTO Objednavka (ID,customer_id, stav) VALUES (?,?,?)";
+    connection.query(sql_objednavka,[objednavka_id,customer_id,stav], function (err, result) {
+      if (err) throw err;
+      console.log("objednavka vlozena");
+    });
+
+    for(var product_id in produkty_objednavka) {
+        console.log(produkty_objednavka[product_id]); // pocet produktov
+        
+        let produkty_objednavka_id = getRandomInt(3001,4000);
+
+
+        sql_objednavka_produkt = "INSERT INTO ObjednavkaProdukt (ID,Order_ID, Product_ID,Quantity) VALUES (?,?,?,?)";
+        connection.query(sql_objednavka_produkt,[produkty_objednavka_id,objednavka_id,product_id,produkty_objednavka[product_id]], function (err, result) {
+            if (err) throw err;
+            console.log("produkt do objednavky vlozen");
+    });
+
+    }
+
+
+
+
 
     console.log(req)
 

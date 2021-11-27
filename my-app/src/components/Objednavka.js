@@ -23,16 +23,24 @@ function Objednavka(){
       },[])
 
       const odoslatFormular = () => {
+          let pass_data = JSON.parse(sessionStorage.getItem('myValueSessionStorage'));
+          let product_data = {}
+          pass_data.forEach(function(i) { product_data[i] = (product_data[i]||0) + 1;});
+        
+          console.log(product_data)
+        
           Axios.post('http://localhost:8080/vlozitobjednavku', {
             email: email,
             meno: meno,
             ulica: ulica,
             cislo_domu: cislo_domu,
             mesto: mesto,
-            psc: psc
+            psc: psc,
+            produkty_objednavka: product_data
         }).then(() =>{
             console.log('objednavka bola odoslana na server !!! ')
         })
+        
       }
 
 
