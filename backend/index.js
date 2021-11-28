@@ -187,6 +187,19 @@ app.put('/api/update',(req,res) => {
     console.log(req.body)
 })
 
+app.get('/api/get/reklama',(req,res) => {
+    
+    connectDB();
+    res.statusCode = 200; //HTTP Ok
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin','*');
+    connection.query("SELECT * FROM Reklama LIMIT 50", function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.send(result);
+    });
+})
+
 app.listen(8080,() =>{
     console.log("running on port 8080")
 })
