@@ -53,6 +53,7 @@ function Home(){
       <h1>ESHOP BY ROMAN</h1>
       <button onClick={onGetClick}>Stav kosika</button>
       <button onClick={vymazKosik}>Vymaz Kosik</button>
+
       {produtcsList.map((val,index)=>{
         return(<div key={index} className="card">
           <h1 key= {val.Nazov}>{val.Nazov}</h1>
@@ -63,8 +64,6 @@ function Home(){
       )}
     </div> 
 
-   
-   
   );
 
 }
