@@ -8,6 +8,7 @@ function Admin(){
     const [ordersList, setOrdersList] = useState([]);
     const [orderItemList, setOrderItemsList] = useState([]);
     const [customerList, setCustomerList] = useState([]);
+    const [reklama, setReklama] = useState({});
     const [isLoading, setLoading] = useState(true);
     
 
@@ -34,6 +35,14 @@ function Admin(){
             console.log(' get order items')
         })
 
+        Axios.get('http://localhost:8080/api/get/reklama').then((response) => {
+            //console.log(response.data);
+            setReklama(response.data[0])
+            console.log(response.data[0])
+          }).then(() =>{
+              console.log(' get reklama')
+          })
+
         Axios.get('http://localhost:8080/api/get/customer').then((response) => {
             console.log(response.data);
             setCustomerList(response.data)
@@ -41,6 +50,8 @@ function Admin(){
           }).then(() =>{
             console.log(' get customer')
         })
+
+
     
       },[])
 
@@ -110,6 +121,18 @@ function Admin(){
                     </div>
                 )
             })}
+
+
+        <h1>SPRAVA REKLAM</h1>
+        <div className="sprava-reklam"> 
+            <h2>REKLAMA ID: {reklama.id} </h2>
+            <h2>KLIKNUTIA: {reklama.kliknutia}</h2>
+            <h2>FOTKA: </h2>
+            <img className="img-reklama-admin" key={reklama.id+1}  src={reklama.image} alt="Logo" />
+            <p>LINK: {reklama.link}</p>
+             
+        </div>   
+           
            
         </div>
     )

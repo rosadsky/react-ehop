@@ -200,6 +200,19 @@ app.get('/api/get/reklama',(req,res) => {
     });
 })
 
+app.put('/api/kliknutie',(req,res) => {
+    connectDB();
+    let mysql_reklama = "UPDATE Reklama SET kliknutia = kliknutia + 1 WHERE id = 'reklama'";
+
+    connection.query(mysql_reklama, function (err, result) {
+        if (err) throw err;
+        console.log("kliknutia boli pripocitane");
+    });
+
+    console.log("KLIKNUTE NA REKLAMU")
+
+})
+
 app.listen(8080,() =>{
     console.log("running on port 8080")
 })

@@ -20,6 +20,10 @@ function Podakovanie(){
     
       const kliknutieNaReklamu = () => {
 
+        Axios.put("http://localhost:8080/api/kliknutie").then(() =>{
+            console.log(' put order')
+        })
+
         console.log("KLIKKKK")
       }
 

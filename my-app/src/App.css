@@ -99,3 +99,13 @@ button {
     width: 400px;
     border-radius: 10px; 
 }
+
+.img-reklama-admin {
+    width: 200px;
+}
+
+.sprava-reklam {
+    border-radius: 10px; 
+    border: 2px solid white;
+    padding-left: 20px;
+}
