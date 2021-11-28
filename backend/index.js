@@ -32,20 +32,46 @@ function getRandomInt(min, max) {
   }
 
 
+  app.get('/howto',(req,res,next) => {
+    
+    connectDB();
+
+    connection.query("SHOW CREATE TABLE Objednavka", function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.send(result);
+    });
+})
+ 
+
 app.get('/createproducts', function(req, res,next) {
     
-   
-    /*connection.connect(function(err) {
-        if (err) throw err;
+    connectDB();
+        //"CREATE TABLE `Zakaznik` (\n  `ID` int NOT NULL,\n  `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,\n  `meno` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,\n  `ulica` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,\n  `cislo` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,\n  `mesto` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,\n  `psc` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,\n  PRIMARY KEY (`ID`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3"}
+    
         console.log("Connected!");
-        var sql = "CREATE TABLE tprodukty (id INT AUTO_INCREMENT PRIMARY KEY, image VARCHAR(255), nazov VARCHAR(255))";
+        var sql = "CREATE TABLE Produkt (ID int NOT NULL, Nazov varchar(45) NOT NULL,Image text,Cena float NOT NULL,PRIMARY KEY (ID)) ENGINE=InnoDB ";
         connection.query(sql, function (err, result) {
           if (err) throw err;
           console.log("Table created");
         });
-      });
-   
+    
 
+        console.log("Connected!");
+        var sql = "CREATE TABLE Zakaznik (ID int NOT NULL, email varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,meno varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,ulica varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,cislo varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,mesto varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,psc varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL, PRIMARY KEY (ID)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3";
+        connection.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("Table created");
+        });
+
+        console.log("Connected!");
+        //var sql = "" ;
+        connection.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("Table created");
+        });
+   
+      /*
       var sql = "INSERT INTO tprodukty ( image,nazov) VALUES ?";
       var values = [
         ['image_path_here', 'teplerozky'],
@@ -57,8 +83,8 @@ app.get('/createproducts', function(req, res,next) {
             if (err) throw err;
             console.log("Number of records inserted: " + result.affectedRows);
         });
-             */  
-
+        */
+             
 
 })
 

@@ -26,6 +26,8 @@ body {
 .img-objednavka {
     position: relative;
     height: 50px;
+    border-radius: 5px; 
+    padding-right: 10px;
 }
 
 .objedvka-item{
@@ -33,6 +35,9 @@ body {
     border: 2px solid white;
     text-align: left;
     border-radius: 10px;
+    display: flex;
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 .buttonkosik{

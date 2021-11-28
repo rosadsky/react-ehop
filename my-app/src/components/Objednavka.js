@@ -61,9 +61,12 @@ function Objednavka(){
                 return( 
 
                     <div key={index} className="objedvka-item">
-                        <h3 key={item.ID+3}> {item.Nazov}</h3>
                         <img key={item.ID+1} className="img-objednavka" src={item.Image} alt="Logo" />
-                        <h4 key={item.ID+5}>pocet kusov {count[item.ID.toString()]}</h4>
+                        <h4 key={item.ID+3}> {item.Nazov}   |</h4>
+                        <h4 key={item.ID+5}> kusov: {count[item.ID.toString()]}  |</h4>
+                        <h4 key={item.ID+10}> {item.Cena} €/ks |</h4>
+                        <h4 key={item.ID+20}> Cena vsetky: {item.Cena * count[item.ID]} </h4>
+
                     </div>
                     )
                } else {

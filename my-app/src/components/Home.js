@@ -3,7 +3,9 @@ import React, {useEffect, useState} from 'react';
 import Axios from 'axios'
 
 function Home(){
+    
     let kosik = []
+    
  const [produtcsList, setProductsList] = useState([])
  //const [,setValue] = React.useState('')
 
@@ -56,7 +58,7 @@ function Home(){
 
       {produtcsList.map((val,index)=>{
         return(<div key={index} className="card">
-          <h1 key= {val.Nazov}>{val.Nazov}</h1>
+          <h1 key= {val.Nazov}>{val.Nazov} - {val.Cena} €</h1>
           <img key={val.Image} className="img-product" src={val.Image} alt="Logo" />
           <button key={val.ID} className="buttonkosik" value={val.ID} onClick={doKosika}>PRIDAT DO KOSIKA</button>
        </div>) 
