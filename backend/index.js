@@ -170,6 +170,23 @@ app.get('/', function(req, res) {
     res.send("hello world")
 }) 
 
+app.put('/api/update',(req,res) => {
+
+    let objednavka_id = req.body.objednavka_id;
+    let stav = req.body.stav;
+
+    console.log(typeof objednavka_id )
+
+    sql_update = "UPDATE Objednavka SET stav = ? WHERE ID = ?"
+
+    connection.query(sql_update,[stav,objednavka_id], function (err, result) {
+        if (err) throw err;
+        console.log("stav bol zmeneny");
+});
+
+    console.log(req.body)
+})
+
 app.listen(8080,() =>{
     console.log("running on port 8080")
 })

@@ -48,6 +48,29 @@ function Admin(){
         return <div className="App">Loading...</div>;
     }
 
+    function updateObjednavky(objednavka_id,stav){
+        
+        Axios.put("http://localhost:8080/api/update", {
+            objednavka_id: objednavka_id,
+            stav: stav
+        }).then(() =>{
+            console.log(' put order')
+        })
+
+    }
+
+
+    function zmenStavObjednavky(objednavka_id,aktualny_stav) {
+            console.log("ZMENA STAVU"  + aktualny_stav)
+
+            if(aktualny_stav === "nezaplatene"){
+                console.log("ZMENA NA  zaplatene")
+                updateObjednavky(objednavka_id,"zaplatene")
+            } else {
+                console.log("ZMENA NA nezaplatene")
+                updateObjednavky(objednavka_id,"nezaplatene")
+            }
+    }
 
     return(
         <div>
@@ -59,11 +82,12 @@ function Admin(){
                 
                 
                 
+                
                 return(
                     <div key={index} className="admin">
                         <h3 key={order.ID}>OBJEDNAVKA - ID: {order.ID} STAV: {order.stav}</h3>
                         <p key={object_customer.ID}> {object_customer.meno} - {object_customer.email} - {object_customer.ulica} - {object_customer.cislo} - {object_customer.mesto}</p>
-
+                        <button key={index + 323} onClick={() => zmenStavObjednavky(order.ID,order.stav)}>ZMEN STAV OBJEDNAVKY </button>
                         {orderItemList.map((orderItem,index)=>{
 
                             if(orderItem.Order_ID === order.ID){
@@ -73,6 +97,7 @@ function Admin(){
                                         <p key={index+99}> ProductID: { orderItem.Product_ID} - QUANTITY: {orderItem.Quantity}</p> 
                                         <p key={index+999}> {object_product.Nazov} | Price per Item: {object_product.Cena} €</p>
                                     </div>
+                                    
                                     
                                 )
                                 
