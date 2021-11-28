@@ -9,6 +9,7 @@ function Admin(){
     const [orderItemList, setOrderItemsList] = useState([]);
     const [customerList, setCustomerList] = useState([]);
     const [reklama, setReklama] = useState({});
+    const [link, setLink] = useState("");
     const [isLoading, setLoading] = useState(true);
     
 
@@ -55,8 +56,21 @@ function Admin(){
     
       },[])
 
+
+
+
     if (isLoading) {
         return <div className="App">Loading...</div>;
+    }
+
+
+    const odoslatLink = () => {
+    
+        Axios.put('http://localhost:8080/api/zmenalinku', {link: link}).then(() =>{
+          console.log('link bol zmeneny')
+      })
+      
+      
     }
 
     function updateObjednavky(objednavka_id,stav){
@@ -130,7 +144,15 @@ function Admin(){
             <h2>FOTKA: </h2>
             <img className="img-reklama-admin" key={reklama.id+1}  src={reklama.image} alt="Logo" />
             <p>LINK: {reklama.link}</p>
-             
+            
+            <div className="form">
+               <label>Zmeniť link reklamy:</label>
+               <input className="form-input" type="text" name="email" onChange = {(e)=>{
+                    setLink(e.target.value)
+                    }} />
+            </div>
+            <button onClick={odoslatLink}>ZMENIT LINK</button>
+
         </div>   
            
            

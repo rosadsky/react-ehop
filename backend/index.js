@@ -213,6 +213,23 @@ app.put('/api/kliknutie',(req,res) => {
 
 })
 
+app.put('/api/zmenalinku',(req,res) => {
+    connectDB();
+
+    let link = req.body.link;
+    
+    let mysql_reklama_link = "UPDATE Reklama SET link = ? WHERE id = 'reklama'";
+
+    connection.query(mysql_reklama_link,[link], function (err, result) {
+        if (err) throw err;
+        console.log("link bol zmeneny");
+    });
+    
+    
+    console.log(req.body)
+
+})
+
 app.listen(8080,() =>{
     console.log("running on port 8080")
 })
