@@ -10,6 +10,7 @@ function Admin(){
     const [customerList, setCustomerList] = useState([]);
     const [reklama, setReklama] = useState({});
     const [link, setLink] = useState("");
+    const [obrazok, setObrazok] = useState("");
     const [isLoading, setLoading] = useState(true);
     
 
@@ -66,7 +67,7 @@ function Admin(){
 
     const odoslatLink = () => {
     
-        Axios.put('http://localhost:8080/api/zmenalinku', {link: link}).then(() =>{
+        Axios.put('http://localhost:8080/api/zmenalinku', {link: link, obrazok: obrazok}).then(() =>{
           console.log('link bol zmeneny')
       })
       
@@ -146,12 +147,16 @@ function Admin(){
             <p>LINK: {reklama.link}</p>
             
             <div className="form">
-               <label>Zmeniť link reklamy:</label>
-               <input className="form-input" type="text" name="email" onChange = {(e)=>{
+            <label>Obrazok reklamy:</label>
+               <input className="form-input" type="text" name="obrazok" onChange = {(e)=>{
+                    setObrazok(e.target.value)
+                    }} />
+               <label>Link reklamy:</label>
+               <input className="form-input" type="text" name="link" onChange = {(e)=>{
                     setLink(e.target.value)
                     }} />
             </div>
-            <button onClick={odoslatLink}>ZMENIT LINK</button>
+            <button onClick={odoslatLink}>ZMENIT REKLAMU</button>
 
         </div>   
            

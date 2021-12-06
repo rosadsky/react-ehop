@@ -4,6 +4,12 @@ const mysql = require('mysql')
 var cors = require('cors');
 var shortid = require('shortid');
 
+// ******************************//
+//    Please read README.md      //
+//                               //
+//        Roman Osadský          //
+// ******************************//
+
 app.use(express.json());
 app.use(cors());
 
@@ -77,7 +83,6 @@ function connectDB() {
             console.log(result);
 
             if(result.length === 0){
-                console.log("NIEJE TAM SOMARINA");
                 var sql = "INSERT IGNORE INTO Reklama (id,link,image,kliknutia) VALUES (?,?,?,?)";
                 connection.query(sql,['reklama','https://pixabay.com/illustrations/black-friday-christmas-1898114/','https://cdn.pixabay.com/photo/2016/12/10/20/23/black-friday-1898114_960_720.jpg',0], function (err, result) {
                 if (err) throw err;
@@ -277,10 +282,14 @@ app.put('/api/zmenalinku',(req,res) => {
     connectDB();
 
     let link = req.body.link;
+    let image = req.body.obrazok;
     
-    let mysql_reklama_link = "UPDATE Reklama SET link = ? WHERE id = 'reklama'";
+    console.log("ZMENA LINKU")
+    console.log(image)
 
-    connection.query(mysql_reklama_link,[link], function (err, result) {
+    let mysql_reklama_link = `UPDATE Reklama SET link = '${link}', image = '${image}' WHERE id = 'reklama'`;
+
+    connection.query(mysql_reklama_link,[link,image], function (err, result) {
         if (err) throw err;
         console.log("link bol zmeneny");
     });

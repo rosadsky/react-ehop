@@ -7,6 +7,12 @@ import Objednavka from './components/Objednavka';
 import Podakovanie from './components/Podakovanie'
 import {Route,Routes} from "react-router-dom"
 
+// ******************************//
+//    Please read README.md      //
+//                               //
+//        Roman Osadský          //
+// ******************************//
+
 function App() {
   return( 
   <div className="App">
